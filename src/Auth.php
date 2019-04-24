@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | ThinkPHP 5.1 [ WE CAN DO IT JUST THINK IT ]
+// | ThinkPHP 6.0 [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2019 https://xioadim.com All rights reserved.
 // +----------------------------------------------------------------------
@@ -10,10 +10,9 @@
 // +----------------------------------------------------------------------
 namespace xiaodi;
 
-use think\Db;
+use think\facade\Db;
 use think\facade\Config;
 use think\facade\Session;
-use think\Loader;
 
 /**
  * 权限认证类
@@ -100,7 +99,7 @@ class Auth
     public function __construct()
     {
         //可设置配置项 auth, 此配置项为数组。
-        if ($auth = Config::pull('auth')) {
+        if ($auth = Config::get('auth')) {
             $this->config = array_merge($this->config, $auth);
         }
         // 初始化request
@@ -190,8 +189,8 @@ class Auth
             return $groups[$uid];
         }
         // 转换表名
-        $auth_group_access = Loader::parseName($this->config['auth_group_access'], 1);
-        $auth_group = Loader::parseName($this->config['auth_group'], 1);
+        $auth_group_access = $this->parseName($this->config['auth_group_access'], 1);
+        $auth_group = $this->parseName($this->config['auth_group'], 1);
         // 执行查询
         $user_groups = Db::view($auth_group_access, 'uid,group_id')
             ->view($auth_group, 'title,rules', "{$auth_group_access}.group_id={$auth_group}.id", 'LEFT')
@@ -277,5 +276,26 @@ class Auth
         }
 
         return $userinfo[$uid];
+    }
+
+    /**
+     * 字符串命名风格转换
+     * type 0 将Java风格转换为C的风格 1 将C风格转换为Java的风格
+     * @access public
+     * @param  string  $name 字符串
+     * @param  integer $type 转换类型
+     * @param  bool    $ucfirst 首字母是否大写（驼峰规则）
+     * @return string
+     */
+    public function parseName($name, $type = 0, $ucfirst = true)
+    {
+        if ($type) {
+            $name = preg_replace_callback('/_([a-zA-Z])/', function ($match) {
+                return strtoupper($match[1]);
+            }, $name);
+            return $ucfirst ? ucfirst($name) : lcfirst($name);
+        }
+
+        return strtolower(trim(preg_replace("/[A-Z]/", "_\\0", $name), "_"));
     }
 }
