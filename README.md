@@ -1,5 +1,5 @@
 # think-addons
-The ThinkPHP5 Auth Package
+The ThinkPHP5.1 Auth Package
 
 ## 安装
 > composer require xiaodi/think-auth:2.0.0
