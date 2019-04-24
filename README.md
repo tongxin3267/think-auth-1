@@ -1,8 +1,8 @@
 # think-addons
-The ThinkPHP5 Auth Package
+The ThinkPHP6.0 Auth Package
 
 ## 安装
-> composer require xiaodi/think-auth:2.0.0
+> composer require xiaodi/think-auth:3.0.0
 
 ## 配置
 ### 公共配置
