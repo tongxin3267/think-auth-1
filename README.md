@@ -2,7 +2,7 @@
 The ThinkPHP6.0 Auth Package
 
 ## 安装
-> composer require xiaodi/think-auth:3.0.0
+> composer require xiaodi/think-auth
 
 ## 配置
 ### 公共配置
