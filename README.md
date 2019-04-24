@@ -1,6 +1,8 @@
 # think-addons
 The ThinkPHP5.1 Auth Package
 
+***来自 [5ini99](https://github.com/5ini99/think-auth)***
+
 ## 安装
 > composer require xiaodi/think-auth:2.0.0
 
