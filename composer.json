@@ -1,10 +1,10 @@
 {
     "name": "xiaodi/think-auth",
-    "description": "Auth Package For ThinkPHP 5.1",
+    "description": "Auth Package For ThinkPHP 6.0",
     "homepage": "https://github.com/xiaodit/think-auth",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "authors": [
         {
             "name": "xiaodi",
