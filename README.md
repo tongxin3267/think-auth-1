@@ -52,15 +52,15 @@ CREATE TABLE `think_auth_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 ------------------------------
 -- think_auth_group_access 用户组明细表
--- uid:用户id，group_id：用户组id
+-- user_id:用户id，role_id：用户组id
 ------------------------------
 DROP TABLE IF EXISTS `think_auth_group_access`;
 CREATE TABLE `think_auth_group_access` (  
-    `uid` mediumint(8) unsigned NOT NULL,  
-    `group_id` mediumint(8) unsigned NOT NULL, 
-    UNIQUE KEY `uid_group_id` (`uid`,`group_id`),  
+    `user_id` mediumint(8) unsigned NOT NULL,  
+    `role_id` mediumint(8) unsigned NOT NULL, 
+    UNIQUE KEY `uid_role_id` (`uid`,`role_id`),  
     KEY `uid` (`uid`), 
-    KEY `group_id` (`group_id`)
+    KEY `role_id` (`role_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ```
 
